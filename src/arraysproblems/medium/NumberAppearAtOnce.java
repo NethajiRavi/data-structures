@@ -1,5 +1,6 @@
 package arraysproblems.medium;
 
+
 public class NumberAppearAtOnce {
 
     public static void main(String[] args) {
