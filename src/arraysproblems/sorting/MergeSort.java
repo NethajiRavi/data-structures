@@ -7,7 +7,6 @@ public class MergeSort {
 
         int[] arr = new int[]{4, 2, 1, 6, 7};
         int high = arr.length - 1;
-
         mergeSort(arr, 0, high);
         System.out.println(Arrays.toString(arr));
 
@@ -15,8 +14,6 @@ public class MergeSort {
     }
 
     private static void mergeSort(int[] arr, int low, int high) {
-
-
         if (low >= high) {
             return;
         }
@@ -28,28 +25,54 @@ public class MergeSort {
 
     private static void mergeElement(int[] arr, int low, int mid, int high) {
 
-        int[] temp = new int[high - low + 1];
+        int[] temp = new int[high-low+1];
         int left = low;
-        int right = mid + 1;
+        int right = mid+1;
         int p = 0;
 
-        while (left <= mid && right <= high) {
-
-            if (arr[left] <= arr[right]) {
-                temp[p++] = arr[left++];
-            } else {
-                temp[p++] = arr[right++];
+        while (left<=mid && right<=high){
+            if(arr[left]<=arr[right]){
+                temp[p++]=arr[left++];
+            }else {
+                temp[p++]=arr[right++];
             }
         }
-        while (left <= mid) {
-            temp[p++] = arr[left++];
+
+        while (left<=mid){
+            temp[p++]=arr[left++];
         }
-        while (right <= high) {
-            temp[p++] = arr[right++];
+
+        while (right<=high){
+            temp[p++]=arr[right++];
         }
         for (int i = 0; i < temp.length; i++) {
             arr[low + i] = temp[i];
         }
     }
+
+//    private static void mergeElement(int[] arr, int low, int mid, int high) {
+//
+//        int[] temp = new int[high - low + 1];
+//        int left = low;
+//        int right = mid + 1;
+//        int p = 0;
+//
+//        while (left <= mid && right <= high) {
+//            if (arr[left] <= arr[right]) {
+//                temp[p++] = arr[left++];
+//            } else {
+//                temp[p++] = arr[right++];
+//            }
+//        }
+//        while (left <= mid) {
+//            temp[p++] = arr[left++];
+//        }
+//        while (right <= high) {
+//            temp[p++] = arr[right++];
+//        }
+//        for (int i = 0; i < temp.length; i++) {
+//            arr[low + i] = temp[i];
+//        }
+//    }
 }
 
