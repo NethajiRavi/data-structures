@@ -9,15 +9,15 @@ public class findLargetElement {
        // Normal Approach
 
         int[] arr = new int[]{1, 32, 43, 1, 21, 22, 54};
-        /*int max = arr[0];
+        int max = arr[0];
         for (int i =0 ; i <= arr.length -1;i ++) {
             if (arr[i] > max) {
                 max = arr[i];
             }
         }
-        System.out.println(max);*/
+        System.out.println(max);
 
-        System.out.println(sortArray(arr));
+       // System.out.println(sortArray(arr));
     }
 
     private static String sortArray(int[] arr) {
