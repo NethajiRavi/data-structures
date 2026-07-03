@@ -16,27 +16,25 @@ public class MoveZeroToLast {
 
         int j = -1;
 
-        for (int i = 0; i <= arr.length - 1; i++) {
+        for (int i = 0; i < arr.length; i++) {
             if (arr[i] == 0) {
                 j = i;
                 break;
             }
         }
-            if (j ==-1) {
-                return arr;
-            }
-            for(int k =j+1; k<=arr.length-1;k++){
+        if (j == -1) {
+            return arr;
+        }
+        for (int k = j + 1; k < arr.length; k++) {
 
-                if(arr[k] !=0){
-                    int temp = arr[k];
-                    arr[k] = arr[j];
-                    arr[j] = temp;
-                    j++;
-
-                }
+            if (arr[k] != 0) {
+                int temp = arr[k];
+                arr[k] = arr[j];
+                arr[j] = temp;
+                j++;
             }
+
+        }
         return arr;
     }
-
-
 }
