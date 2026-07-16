@@ -1,5 +1,7 @@
 package arraysproblems.linkedList.double_linked_list;
 
+import java.util.Stack;
+
 public class DoubleNodeUtils {
 
     public static DoubleNode convertArrayToDl(int[] arr) {
@@ -8,7 +10,6 @@ public class DoubleNodeUtils {
         DoubleNode temp = head;
 
         for (int i = 1; i < arr.length; i++) {
-
             DoubleNode node = new DoubleNode(null, temp, arr[i]);
             node.setPrev(temp);
             temp.setNext(node);
@@ -101,5 +102,40 @@ public class DoubleNodeUtils {
         }
         return head;
 
+    }
+
+    public static DoubleNode reverseDoubleLinkedListStack(DoubleNode node) {
+        DoubleNode head = node;
+        DoubleNode temp = head;
+
+        Stack<Integer> st = new Stack<>();
+        while (temp != null) {
+            st.push(temp.getData());
+            temp = temp.getNext();
+        }
+
+        temp = head;
+
+        while (temp != null) {
+            temp.setData(st.pop());
+            temp = temp.getNext();
+        }
+
+        return head;
+    }
+
+    public static DoubleNode reverseDoubleLinkedListOptimalSolution(DoubleNode doubleNode) {
+        DoubleNode head = doubleNode;
+        DoubleNode current = head;
+        DoubleNode prev = null;
+
+        while (current != null) {
+            DoubleNode temp = current.getNext();
+            current.setNext(current.getPrev());
+            current.setPrev(temp);
+            prev = current;
+            current = temp;
+        }
+        return prev;
     }
 }
