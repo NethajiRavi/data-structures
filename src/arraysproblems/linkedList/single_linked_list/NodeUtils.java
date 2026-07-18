@@ -1,5 +1,7 @@
 package arraysproblems.linkedList.single_linked_list;
 
+import java.util.*;
+
 public class NodeUtils {
 
     public static Node convertArrayToLinkedList(int[] arr) {
@@ -113,6 +115,153 @@ public class NodeUtils {
             temp = temp.getNext();
         }
         return head;
+
+    }
+
+    public static Node getMiddleOfLinkedList(Node node) {
+
+
+        Node slow = node;
+        Node fast = node;
+
+        while (slow != null && fast != null && fast.getNext() != null) {
+            slow = slow.getNext();
+            fast = fast.getNext().getNext();
+        }
+        return slow;
+    }
+
+    public static Node reverseASingleLinkedList(Node node) {
+
+        Node head = node;
+        Node temp = head;
+        Node prev = null;
+
+
+        while (temp != null) {
+            Node font = temp.getNext();
+            temp.setNext(prev);
+            prev = temp;
+            temp = font;
+        }
+
+        return prev;
+
+    }
+
+
+    public static Node reverseASingleLinkedListByStack(Node node) {
+
+        Node head = node;
+        Stack<Integer> st = new Stack<>();
+        Node temp = head;
+
+        while (temp != null) {
+            st.push(temp.getDate());
+            temp = temp.getNext();
+        }
+
+        temp = head;
+
+        while (temp != null) {
+            temp.setDate(st.pop());
+            temp = temp.getNext();
+        }
+
+        return head;
+
+    }
+
+    public static boolean isCyclicByBruteForce(Node node) {
+        Map<Node, Integer> result = new HashMap<>();
+
+        // it will works only the hascode values of the Node has to be same
+
+        Node head = node;
+
+        while (head != null) {
+            if (result.containsKey(head)) {
+                return true;
+            } else {
+                result.put(head, 1);
+            }
+            head = head.getNext();
+        }
+        return false;
+    }
+
+
+    public static boolean isCyclicByOptimalSolution(Node node) {
+        Node slow = node;
+        Node fast = node;
+        // Need for Address Comparison
+        while (fast != null && slow != null && fast.getNext() != null) {
+            slow = slow.getNext();
+            fast = fast.getNext().getNext();
+            if (slow == fast) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Node returnCyclicNodeBrute(Node node) {
+        Set<Node> set = new HashSet<>();
+        Node head = node;
+        while (head != null) {
+            if (set.contains(head)) {
+                return head;
+            } else {
+                set.add(head);
+            }
+            head = head.getNext();
+        }
+        return null;
+    }
+
+    public static Node returnCyclicNodeOptimal(Node node) {
+        Node slow = node;
+        Node fast = node;
+        while (slow != null && fast != null && fast.getNext() != null) {
+            slow = slow.getNext();
+            fast = fast.getNext().getNext();
+            if (slow == fast) {
+                slow = node;
+                while (slow != null && fast != null) {
+                    slow = slow.getNext();
+                    fast = fast.getNext();
+                    if (slow == fast) {
+                        return slow;
+                    }
+                }
+                break;
+            }
+        }
+        return null;
+    }
+
+    public static boolean isPalindromOrNotBrute(Node head) {
+
+        Stack<Integer> st = new Stack<>();
+
+        Node temp = head;
+
+        while (temp != null) {
+            st.push(temp.getDate());
+            temp = temp.getNext();
+        }
+
+        temp = head;
+
+        while (temp != null) {
+
+            int date = temp.getDate();
+            if (date != st.pop()) return false;
+            temp = temp.getNext();
+        }
+
+        return true;
+
 
     }
 }
